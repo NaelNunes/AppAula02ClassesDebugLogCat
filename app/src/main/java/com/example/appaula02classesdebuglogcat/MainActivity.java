@@ -17,10 +17,13 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private TextView txtPessoa;
     private Button btnFabricarPessoa;
     private Button btnSair;
+    private Button btnCriarPessoa;
+    private TextView txtPessoa;
+    private TextView txtNome;
+    private TextView txtIdade;
+
     Pessoa pessoa;
     int contador;
 
@@ -38,8 +41,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnFabricarPessoa = findViewById(R.id.btnFabricarPessoa);
-        txtPessoa = findViewById(R.id.txtPessoa);
         btnSair = findViewById(R.id.btnSair);
+        btnCriarPessoa = findViewById(R.id.btnCriarPessoa);
+
+        txtPessoa = findViewById(R.id.txtPessoa);
+        txtNome = findViewById(R.id.txtNome);
+        txtIdade = findViewById(R.id.txtIdade);
+
 
         btnFabricarPessoa.setOnClickListener(v -> {
             Toast.makeText(this, "Botão Fabricar Pessoa Clicado", Toast.LENGTH_LONG).show();
@@ -54,6 +62,25 @@ public class MainActivity extends AppCompatActivity {
             contador++;
             Log.d("eventos", "Botão Sair Clicado "+contador);
             finish();
+        });
+
+        btnCriarPessoa.setOnClickListener(v -> {
+            pessoa = new Pessoa();
+            pessoa.setNome("Marco");
+            pessoa.setIdade(getIdade());
+
+            txtPessoa.setText(pessoa.toString());
+            txtNome.setText(pessoa.getNome());
+            txtIdade.setText(String.valueOf(pessoa.getIdade()));
+
+            Toast.makeText(this, "Botão Criar Pessoa Clicado", Toast.LENGTH_LONG).show();
+
+            contador++;
+            Log.d("eventos", "Botão Criar Pessoa Clicado "+contador);
+            Log.i("eventos", "Nova pessoa criada: "+pessoa.toString());
+            Log.w("eventos", "Nome da pessoa: "+pessoa.getNome());
+            Log.v("eventos", "Idade da pessoa: "+pessoa.getIdade());
+
         });
 
 
